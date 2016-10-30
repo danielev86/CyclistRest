@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		    <meta name="viewport" content="width-device-width, initial-scale=1"/>
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
+            <script type="text/javascript">
+            	$("document").ready(function(){
+            		$.ajax({
+            			url:"http://localhost:9080/CyclingRest/retrieveAllCyclist",
+            			type:"POST",
+            			dataType:"json",
+            			success:function(data, status){
+            				var codice="<tbody>";
+            				for(var i=0;i<data.length;i++){
+            					codice +="<tr><td>"+data[i]["firstName"]+"</td><td>"+data[i]["lastName"]+"</td><td>"+new Date(data[i]["born"])+"</td></tr>"
+            				}
+            				codice +="</tbody>"
+            				$(".viewTable").append(codice).hide();
+            			}
+            		});
+            		$(".viewButton").click(function(){
+                        if($(".viewTable").is(":visible")){
+                            $(".viewTable").hide();
+                        }else $(".viewTable").show();
+            			
+            		})
+            	}); 
+            </script>
+	</head>
+	<body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Mio sito</a>
+                </div>
+                <ui class="nav navbar-nav">
+                    <li class="active"><a href>Home</a></li>
+                    <li><a>Pagina principale</a></li>
+                    <li><a>Pagina secondaria</a></li>
+                </ui>
+            </div>
+        </nav>
+        
+            
+        
+        <div class="container-fluid">
+			<button type="button" class="btn btn-primary viewButton">View Info</button>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<table class="table table-hover viewTable">
+						<thead>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Born</th>
+						</thead>
+					</table>
+				</div>
+			</div>
+			
+        </div>
+	
+	</body>
+</html>

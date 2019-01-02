@@ -34,7 +34,4 @@ public class CyclistController implements Serializable {
 		}
 		return new ResponseEntity<List<CyclistDTO>>(result, HttpStatus.OK);
 	}
-	
-	
-
 }
